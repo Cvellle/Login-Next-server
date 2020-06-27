@@ -10,7 +10,8 @@ import * as http from "http";
 import schema from "../server/graphql/schema/index";
 import auth from "../server/middleware/auth";
 import config from "./index";
-import expressGraphQLfrom "express-graphql";
+import expressGraphQL from "express-graphql";
+import bodyParser from "body-parser";
 
 class Express {
   public express: express.Application;
@@ -46,6 +47,9 @@ class Express {
     /**
      *  Middlerware for extracting authToken
      */
+    this.express.use(express.urlencoded({ extended: true }));
+    this.express.use(express.json());
+    this.express.use(bodyParser.json());
     this.express.use(auth);
     this.express.use(
       "/graphql",
@@ -61,7 +65,7 @@ class Express {
      * Installing subscription handlers
      */
     this.server.installSubscriptionHandlers(this.httpServer);
-    z;
+
   };
 }
 
