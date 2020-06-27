@@ -44,10 +44,9 @@ class Express {
         },
       })
     );
-    /**
-     *  Middlerware for extracting authToken
+    /*
+      Middlerware for extracting authToken
      */
-    this.express.use(express.urlencoded({ extended: true }));
     this.express.use(express.json());
     this.express.use(bodyParser.json());
     this.express.use(auth);
