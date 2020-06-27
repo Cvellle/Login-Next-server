@@ -42,9 +42,7 @@ ExpressServer.init();
 /**
  * Listen to port
  */
-ExpressServer.httpServer.listen(process.env.PORT || config_1.default.port, () => {
-    console.log(`🚀  Server ready at ${config_1.default.port}`);
-    console.log(`🚀 Server ready at http://localhost:${config_1.default.port}${ExpressServer.server.graphqlPath}`);
-    console.log(`🚀 Subscriptions ready at ws://localhost:${config_1.default.port}${ExpressServer.server.subscriptionsPath}`);
+ExpressServer.httpServer.listen(process.env.PORT, function () {
+  console.log(`??  ==> API Server now listening on PORT ${PORT}!`);
 });
 //# sourceMappingURL=index.js.map
