@@ -3,17 +3,17 @@ const models = require('./models');
 const expressGraphQL = require('express-graphql');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
-const schema = require('./server/graphql/schema/index');
+const schema = require('server/graphql/schema/index');
 
 const app = express();
-const PORT = 3001;
+const PORT = 3000;
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
-if (process.env.NODE_ENV === "production") {
-    app.use(express.static("../her"));
-}
+// if (process.env.NODE_ENV === "production") {
+app.use(express.static("her"));
+// }
 
 const MONGO_URI = "mongodb://Cvele:cveledb1@ds129914.mlab.com:29914/posts";
 if (!MONGO_URI) {
