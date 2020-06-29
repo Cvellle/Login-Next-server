@@ -1,50 +1,38 @@
-"use strict";
-/**
- * Bootstrap your app
- * @author Anurag Garg <garganurag893@gmail.com>
- */
-Object.defineProperty(exports, "__esModule", { value: true });
-const tslib_1 = require("tslib");
-const bluebird_1 = tslib_1.__importDefault(require("bluebird"));
-const mongoose_1 = tslib_1.__importDefault(require("mongoose"));
-const config_1 = tslib_1.__importDefault(require("./config"));
-const express_1 = tslib_1.__importDefault(require("./config/express"));
-/**
- * Promisify All The Mongoose
- * @param mongoose
- */
-bluebird_1.default.promisifyAll(mongoose_1.default);
-/**
- * Connecting Mongoose
- * @param uris
- * @param options
- */
-mongoose_1.default.connect(config_1.default.db, {
-    bufferMaxEntries: 0,
-    keepAlive: true,
-    // reconnectInterval: 500,
-    // reconnectTries: 30,
-    socketTimeoutMS: 0,
-    useNewUrlParser: true,
-    useUnifiedTopology: true
+const express = require('express');
+const models = require('./models');
+const expressGraphQL = require('express-graphql');
+const mongoose = require('mongoose');
+const bodyParser = require('body-parser');
+const schema = require('./server/graphql/schema/index');
+
+const app = express();
+const PORT = 3001;
+
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
+
+if (process.env.NODE_ENV === "production") {
+    app.use(express.static("../her"));
+}
+
+const MONGO_URI = "mongodb://Cvele:cveledb1@ds129914.mlab.com:29914/posts";
+if (!MONGO_URI) {
+    throw new Error("You must provide a MongoLab URI");
+}
+
+mongoose.Promise = global.Promise;
+mongoose.connect(MONGO_URI, { useNewUrlParser: true });
+mongoose.connection
+    .once('open', () => console.log('Connected to MongoLab instance.'))
+    .on('error', error => console.log('Error connecting to MongoLab:', error));
+
+app.use(bodyParser.json());
+app.use('/graphql', expressGraphQL({
+    schema,
+    graphiql: true
+}));
+
+app.listen(PORT, function () {
+    console.log(`??  ==> API Server now listening on PORT ${PORT}!`);
 });
-/**
- * Throw error when not able to connect to database
- */
-mongoose_1.default.connection.on('error', () => {
-    throw new Error(`unable to connect to database: ${config_1.default.db}`);
-});
-/**
- * Initialize Express
- */
-const ExpressServer = new express_1.default();
-ExpressServer.init();
-/**
- * Listen to port
- */
-ExpressServer.httpServer.listen(process.env.PORT || config_1.default.port, () => {
-    console.log(`🚀  Server ready at ${config_1.default.port}`);
-    console.log(`🚀 Server ready at http://localhost:${config_1.default.port}${ExpressServer.server.graphqlPath}`);
-    console.log(`🚀 Subscriptions ready at ws://localhost:${config_1.default.port}${ExpressServer.server.subscriptionsPath}`);
-});
-//# sourceMappingURL=index.js.map
+
