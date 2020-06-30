@@ -12,7 +12,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 // if (process.env.NODE_ENV === "production") {
-app.use(express.static("her"));
+app.use(express.static("client/build"));
 // }
 
 const MONGO_URI = "mongodb://Cvele:cveledb1@ds129914.mlab.com:29914/posts";
