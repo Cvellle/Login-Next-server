@@ -32,7 +32,7 @@ app.use('/graphql', expressGraphQL({
     graphiql: true
 }));
 
-app.listen(PORT, function () {
+app.listen(process.env.PORT || PORT, function () {
     console.log(`??  ==> API Server now listening on PORT ${PORT}!`);
 });
 
