@@ -12,6 +12,8 @@ exports.default = {
     jwtSecret: process.env.JWT_SECRET,
     port: process.env.PORT,
     allowedOrigins: [
+        'https://login-apollo.herokuapp.com/',
+        'https://login-apollo.herokuapp.com/graphql',
         'https://apollo-tau.vercel.app',
         'http://localhost:3000',
         'http://yourapp.com',
