@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "Backend Server for Next.js GraphQL Express Apollo Boilerplate",
   "private": true,
-  "main": "dist2/index.js",
+  "main": "dist/index.js",
   "engines": {
     "node": "12.16.2"
   },
@@ -12,7 +12,7 @@
     "prebuild": "tslint -c tslint.json -p tsconfig.json --fix",
     "build": "npm run clean && tsc",
     "prestart": "yarn build",
-    "start": "node dist2/index.js",
+    "start": "node dist/index.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "pre-commit": "yarn tslint && yarn build",
     "tslint": "tslint --project tsconfig.json",

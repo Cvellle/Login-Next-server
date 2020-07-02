@@ -3,7 +3,7 @@ const models = require('./models');
 const expressGraphQL = require('express-graphql');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
-const schema = require('server/graphql/schema/index');
+const schema = require('./server/graphql/schema/schema.js');
 
 const app = express();
 const PORT = 3001;
