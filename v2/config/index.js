@@ -17,7 +17,9 @@ exports.default = {
         'https://apollo-tau.vercel.app',
         'http://localhost:3000',
         'http://yourapp.com',
-        'http://localhost:4020'
+        'http://localhost:4020',
+        'http://localhost:4000',
+        'http://localhost:4000/graphql'
     ]
 };
 //# sourceMappingURL=index.js.map

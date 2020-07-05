@@ -6,14 +6,14 @@ const bodyParser = require('body-parser');
 const schema = require('./server/graphql/schema/schema.js');
 
 const app = express();
-const PORT = 3001;
+const PORT = 4000;
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
-// if (process.env.NODE_ENV === "production") {
-app.use(express.static("client/build"));
-// }
+if (process.env.NODE_ENV === "production") {
+    app.use(express.static("client/build"));
+}
 
 const MONGO_URI = "mongodb://Cvele:cveledb1@ds129914.mlab.com:29914/posts";
 if (!MONGO_URI) {
