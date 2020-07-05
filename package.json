@@ -4,6 +4,9 @@
   "description": "Backend Server for Next.js GraphQL Express Apollo Boilerplate",
   "private": true,
   "main": "dist/index.js",
+  "engines": {
+    "node": "12.16.2"
+  },
   "scripts": {
     "clean": "rm -rf dist",
     "prebuild": "tslint -c tslint.json -p tsconfig.json --fix",
