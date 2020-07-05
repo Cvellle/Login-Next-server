@@ -17,6 +17,6 @@
     "express": "^4.15.2",
     "express-graphql": "^0.6.4",
     "graphql": "^0.9.3",
-    "mongoose": "^4.9.5"
+    "mongoose": "^5.9.21"
   }
 }
